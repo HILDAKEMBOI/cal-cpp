@@ -1,0 +1,46 @@
+#include<iostream>
+#include<cmath>
+using namespace std;
+int main(){
+int numb1,numb2,results;
+char op;
+char choice;
+do{
+cout<<"Enter a value:";
+cin>>numb1;
+cout<<"enter a operator:";
+cin>>op;	
+cout<<"enter a value:";
+cin>>numb2;
+switch(op){
+case'+':
+results=numb1+numb2;	
+cout<<numb1<<"+"<<numb2<<"="<<results<<endl;  	               break;
+case'-':
+results=numb1-numb2;
+cout<<numb1<<"-"<<numb2<<"="<<results;
+break;
+case'':
+results=numb1numb2;
+cout<<numb1<<"*"<<numb2<<"="<<results<<endl;
+break;
+case'/':
+results=numb1/numb2;
+cout<<numb1<<"/"<<numb2<<"="<<results<<endl;
+break;
+case'^':
+results=numb1^numb2;
+cout<<numb1<<"^"<<numb2<<"="<<results<<endl;
+break;
+case'%':
+results=numb1%numb2;
+cout<<numb1<<"%"<<numb2<<"="<<results<<endl;
+default:
+cout<<"invalid operator!";
+}
+cout<<"\do you want to continue?(y/n):";    cin>>choice;
+}
+while(choice=='y'||choice=='y');
+cout<<"\ncalculator closed."<<endl;;
+return 0;
+}
