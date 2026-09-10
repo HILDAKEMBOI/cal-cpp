@@ -1,0 +1,249 @@
+#include <iostream>
+#include <string>
+#include <ctime>
+using namespace std;
+
+int main()
+{
+string customerName, regNo;
+string hostelName, roomNumber;
+string pin;
+
+int choice, qty;  
+int total = 0;  
+char pwd, delivery;  
+
+string orderedFoods[20];  
+int orderedQty[20];  
+int orderedPrice[20];  
+int orderCount = 0;  
+
+// ================= TIME SETUP =================  
+time_t now = time(0);  
+tm *ltm = localtime(&now);  
+
+int hour = ltm->tm_hour;  
+int minute = ltm->tm_min;  
+
+cout << "======================================" << endl;  
+cout << "  UNIVERSITY OF ELDORET SMART MESS   " << endl;  
+cout << "======================================" << endl;  
+
+cout << "\nEnter Customer Name: ";  
+getline(cin, customerName);  
+
+cout << "Enter Registration Number: ";  
+getline(cin, regNo);  
+
+cout << "\nCurrent Time: " << hour << ":" << minute << endl;  
+
+int meal = 0;  
+
+// ================= MEAL TIME CHECK =================  
+if (hour >= 6 && hour < 10)  
+{  
+    meal = 1;  
+    cout << "\nWELCOME - BREAKFAST TIME" << endl;  
+}  
+else if (hour >= 12 && hour < 15)  
+{  
+    meal = 2;  
+    cout << "\nWELCOME - LUNCH TIME" << endl;  
+}  
+else if (hour >= 18 && hour < 21)  
+{  
+    meal = 3;  
+    cout << "\nWELCOME - SUPPER TIME" << endl;  
+}  
+else  
+{  
+    cout << "\n======================================" << endl;  
+    cout << "MESS IS CURRENTLY CLOSED" << endl;  
+
+    if (hour < 12)  
+    {  
+        cout << "Welcome back at Lunch (12:00 - 2:30 PM)" << endl;  
+    }  
+    else if (hour < 18)  
+    {  
+        cout << "Welcome back at Supper (6:00 - 8:30 PM)" << endl;  
+    }  
+    else  
+    {  
+        cout << "Welcome back tomorrow for Breakfast (6:30 - 9:30 AM)" << endl;  
+    }  
+
+    return 0;  
+}  
+
+// ================= MENU =================  
+do  
+{  
+    if (meal == 1)  
+    {  
+        cout << "\nBREAKFAST MENU" << endl;  
+        cout << "1. Tea   Ksh 10" << endl;  
+        cout << "2. Milk  Ksh 10" << endl;  
+        cout << "3. Ndazi Ksh 10" << endl;  
+        cout << "4. Egg   Ksh 30" << endl;  
+        cout << "5. Checkout" << endl;  
+    }  
+    else if (meal == 2)  
+    {  
+        cout << "\nLUNCH MENU" << endl;  
+        cout << "1. Ugali     Ksh 20" << endl;  
+        cout << "2. Rice      Ksh 30" << endl;  
+        cout << "3. Beans     Ksh 20" << endl;  
+        cout << "4. Kales     Ksh 15" << endl;  
+        cout << "5. Ndengu    Ksh 20" << endl;  
+        cout << "6. Checkout" << endl;  
+    }  
+    else  
+    {  
+        cout << "\nSUPPER MENU" << endl;  
+        cout << "1. Chapati   Ksh 20" << endl;  
+        cout << "2. Beans     Ksh 20" << endl;  
+        cout << "3. Ndengu    Ksh 20" << endl;  
+        cout << "4. Tea       Ksh 10" << endl;  
+        cout << "5. Checkout" << endl;  
+    }  
+
+    cout << "\nSelect item: ";  
+    cin >> choice;  
+
+    if (meal == 1 && choice >= 1 && choice <= 4)  
+    {  
+        cout << "Quantity: ";  
+        cin >> qty;  
+
+        string food;  
+        int price;  
+
+        if (choice == 1) { food = "Tea"; price = 10; }  
+        else if (choice == 2) { food = "Milk"; price = 10; }  
+        else if (choice == 3) { food = "Ndazi"; price = 10; }  
+        else { food = "Egg"; price = 30; }  
+
+        orderedFoods[orderCount] = food;  
+        orderedQty[orderCount] = qty;  
+        orderedPrice[orderCount] = price;  
+
+        total += price * qty;  
+        orderCount++;  
+    }  
+
+    else if (meal == 2 && choice >= 1 && choice <= 5)  
+    {  
+        cout << "Quantity: ";  
+        cin >> qty;  
+
+        string food;  
+        int price;  
+
+        if (choice == 1) { food = "Ugali"; price = 20; }  
+        else if (choice == 2) { food = "Rice"; price = 30; }  
+        else if (choice == 3) { food = "Beans"; price = 20; }  
+        else if (choice == 4) { food = "Kales"; price = 15; }  
+        else { food = "Ndengu"; price = 20; }  
+
+        orderedFoods[orderCount] = food;  
+        orderedQty[orderCount] = qty;  
+        orderedPrice[orderCount] = price;  
+
+        total += price * qty;  
+        orderCount++;  
+    }  
+
+    else if (meal == 3 && choice >= 1 && choice <= 4)  
+    {  
+        cout << "Quantity: ";  
+        cin >> qty;  
+
+        string food;  
+        int price;  
+
+        if (choice == 1) { food = "Chapati"; price = 20; }  
+        else if (choice == 2) { food = "Beans"; price = 20; }  
+        else if (choice == 3) { food = "Ndengu"; price = 20; }  
+        else { food = "Tea"; price = 10; }  
+
+        orderedFoods[orderCount] = food;  
+        orderedQty[orderCount] = qty;  
+        orderedPrice[orderCount] = price;  
+
+        total += price * qty;  
+        orderCount++;  
+    }  
+
+} while (choice != 5);  
+
+// ================= PAYMENT =================  
+cout << "\n======================================" << endl;  
+cout << "M-PESA PAYMENT SIMULATION" << endl;  
+cout << "Amount: Ksh " << total << endl;  
+
+cout << "Enter M-PESA PIN: ";  
+cin >> pin;  
+
+cout << "Payment Successful!" << endl;  
+
+// ================= PWD =================  
+cout << "\nPWD Member? (Y/N): ";  
+cin >> pwd;  
+
+if (pwd == 'Y' || pwd == 'y')  
+{  
+    cout << "Free delivery activated!" << endl;  
+    delivery = 'Y';  
+}  
+else  
+{  
+    cout << "Need delivery? (Y/N): ";  
+    cin >> delivery;  
+}  
+
+if (delivery == 'Y' || delivery == 'y')  
+{  
+    cout << "Enter Hostel: ";  
+    cin >> hostelName;  
+
+    cout << "Enter Room: ";  
+    cin >> roomNumber;  
+}  
+
+// ================= RECEIPT =================  
+cout << "\n======================================" << endl;  
+cout << "RECEIPT" << endl;  
+cout << "======================================" << endl;  
+
+cout << "Name: " << customerName << endl;  
+cout << "Reg No: " << regNo << endl;  
+
+cout << "\nItems:" << endl;  
+
+for (int i = 0; i < orderCount; i++)  
+{  
+    cout << orderedFoods[i]  
+         << " x" << orderedQty[i]  
+         << " = Ksh " << orderedQty[i] * orderedPrice[i]  
+         << endl;  
+}  
+
+cout << "\nTOTAL: Ksh " << total << endl;  
+
+if (delivery == 'Y' || delivery == 'y')  
+{  
+    cout << "Delivery: Room Delivery" << endl;  
+    cout << "Hostel: " << hostelName << endl;  
+    cout << "Room: " << roomNumber << endl;  
+}  
+else  
+{  
+    cout << "Delivery: Pickup" << endl;  
+}  
+
+cout << "\nThank you for using UOE Smart Mess!" << endl;  
+
+return 0;
+
+}
