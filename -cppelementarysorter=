@@ -1,0 +1,59 @@
+#include<iostream>
+#include<functional>
+#include<vector>
+#include<algorithm>
+using namespace std;
+
+class ElementarySorter
+{
+private:
+vector<int>numbers;
+public:
+ElementarySorter();
+void inputNumbers();
+void sortNumbers();
+void outputNumbersDescending();
+
+};
+//constructor
+ElementarySorter::ElementarySorter()
+{
+cout<<"Enter numbers between 1 to 9.\n";}
+//input numbers
+void ElementarySorter::inputNumbers()
+{
+int n,value;
+cout<<" How many numbers do you want to enter?\n";
+cin>>n;
+cout<<"Enter the numbers:\n";
+for (int i=0;i<n;i++)
+
+{cin>>value;  
+numbers.push_back(value);  
+}  
+}  
+//sort numbers in desceding order  
+void ElementarySorter::sortNumbers()  
+{  
+	sort(numbers.begin(),numbers.end(),  
+	greater<int>());  
+}  
+  
+//output numbers  
+void ElementarySorter::outputNumbersDescending()  
+{  
+	cout<<"Numbers in descending order:\n";  
+	for(int i=0;i<numbers.size();i++)  
+{cout<<numbers[i]<<" ";  
+}  
+  
+};  
+int main()  
+{  
+	ElementarySorter E;  
+	E.inputNumbers();  
+	E.sortNumbers();  
+	E.outputNumbersDescending();  
+	  
+	return 0;  
+}
